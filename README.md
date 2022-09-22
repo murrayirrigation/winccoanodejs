@@ -12,7 +12,7 @@ The code connects as an API manager. You will need API manager licences for prod
 ## Installation
 Requirements:
 
-WinCC OA V3.15-17 installed prior
+WinCC OA V3.15-17 installed prior<br>
 npm install winccoanodejs
 
 ## Usage
@@ -49,7 +49,8 @@ before making and calls to WinCC OA.
 * [alertConnect](#alertConnect)
 * [alertSet](#alertSet)
 
-#### connect {#connect}
+<a id="connect"></a>
+#### connect 
 Connects your Node.JS application to the WinCC OA Server
 
 *NB: This function is blocking*
@@ -72,7 +73,8 @@ The function returns true if the connection was successful
     if(winccoanodejs.connect('-currproj -num 2', 'my-nodejs-app'))
         console.log('WinCC OA Connected');
 
-#### disconnect {#disconnect}
+<a id="disconnect"></a>
+#### disconnect 
 Disconnects your application from the WinCC OA Server.
 
 *NB: this is the same as disconnecting a manager and the API will also quit your application*
@@ -87,7 +89,8 @@ Disconnects your application from the WinCC OA Server.
 
     winccoanodejs.disconnect();
 
-#### dpGet {#dpGet}
+<a id="dpGet"></a>
+#### dpGet 
 Gets the value of a data point. This implementation can only read one data point at a time.
 
 ##### Synopsis
@@ -119,7 +122,8 @@ If successful and the `callback` variable is omitted then a `Promise` is returne
 
     main();
 
-#### dpSet {#dpSet}
+<a id="dpSet"></a>
+#### dpSet 
 Sets that value of a data point. This implementation can only write one data point at a time.
 
 ##### Synopsis
@@ -153,7 +157,8 @@ If successful and the `callback` variable is omitted then a `Promise` is returne
 
     main();
 
-#### dpConnect {#dpConnect}
+<a id="dpConnect"></a>
+#### dpConnect 
 Connects to a datapoint and calls a function whenever the data point value changes
 
 ##### Synopsis
@@ -192,7 +197,8 @@ until [dpDisconnect](#dpDisconnect) is called.
 
     dpConnect(dp, connectCallback);
 
-#### dpDisconnect {#dpDisconnect}
+<a id="dpDisconnect"></a>
+#### dpDisconnect 
 Disconnects a data point from a previous [dpConnect](#dpConnect) call
 
 ##### Synopsis
@@ -233,7 +239,8 @@ If the `callback` variable is omitted then a `Promise` is returned otherwise no 
         }
     }, 10000);
 
-#### dpQuery {#dpQuery}
+<a id="dpQuery"></a>
+#### dpQuery 
 Retrieves attribute values with the help of SQL-like statements. See qthelp://wincc_oa/doc/SQL/Query-05.htm
 in the WinCC OA Documentation for query structure.
 
@@ -281,7 +288,8 @@ If the `callback` variable is omitted then a `Promise` is returned otherwise no 
 
     main();
 
-#### dpElementType {#dpElementType}
+<a id="dpElementType"></a>
+#### dpElementType 
 Gets the integer value for a dp elements type. Type numbers can be found in the API header file `DpElementType.hxx`
 
 ##### Synopsis
@@ -305,7 +313,8 @@ If the `callback` variable is omitted then a `Promise` is returned otherwise no 
     const type = await dpElementType('System1:ExampleDP_Arg1.');
     console.log(type); //Output: 22
 
-#### getTypeName {#getTypeName}
+<a id="getTypeName"></a>
+#### getTypeName 
 Return the type name of a data point or data point element as a string. This function is blocking.
 
 ##### Synopsis
@@ -329,7 +338,8 @@ Returns the strring name of the data point. E.G. float, ExampleDP_Float
     const typeName = getTypeName('ExampleDP_Arg1.','System1');
     console.log(typeName); //OUTPUT: ExampleDP_Float
 
-#### dpExists {#dpExists}
+<a id="dpExists"></a>
+#### dpExists 
 Checks if a datapoint or element exists
 
 ##### Synopsis
@@ -352,7 +362,8 @@ Returns true if the datapoint or element exists. Otherwise false.
     //OUTPUT: true false
     console.log(dpExists('ExampleDP_Arg1.'), dpExists('ExampleDP_Arg0.'));
 
-#### getDpSys {#getDpSys}
+<a id="getDpSys"></a>
+#### getDpSys 
 Checks a list of systems for a given datapoint. Will return the first system that it finds the data point on.
 
 ##### Synopsis
@@ -379,7 +390,8 @@ Returns the system that the data point exists in. If the data point is not found
     //OUTPUT: Uncaught Error: Could not get system for DP ExampleDP_Arg0.
     getDpSys('ExampleDP_Arg0.', ['System2:','System1:']);
 
-#### getUserId {#getUserId}
+<a id="getUserId"></a>
+#### getUserId 
 Gets the integer user id value for a given username
 
 ##### Synopsis
@@ -402,7 +414,8 @@ Returns the integer value for the UserID. If the user does not exist then it ret
     //OUTPUT: 0 65535
     console.log(getUserId('root'), getUserId('test'));
 
-#### checkPassword {#checkPassword}
+<a id="checkPassword"></a>
+#### checkPassword 
 Checks the password for a given UserID. Use [getUserId](#getUserId) if you have the Username instead of the UserID
 
 ##### Synopsis
@@ -427,7 +440,8 @@ Returns true is the password matches. False otherwise.
     //user 0 = root
     console.log(checkPassword(0, ''), checkPassword(0, '1234'));
 
-#### alertConnect {#alertConnect}
+<a id="alertConnect"></a>
+#### alertConnect 
 Connect to an alert value and execute a callback when the alert changes.
 
 ##### Synopsis
@@ -465,7 +479,8 @@ Connect to an alert value and execute a callback when the alert changes.
     ]
     */
 
-#### alertSet {#alertSet}
+<a id="alertSet"></a>
+#### alertSet 
 Set attributes of alarms in a similar way to [dpSet](#dpSet).
 
 ##### Synopsis
@@ -500,7 +515,8 @@ Return true if the set was successful. False otherwise.
 
     main();
 
-#### dpGetDescription {#dpGetDescription}
+<a id="dpGetDescription"></a>
+#### dpGetDescription 
 Get the data point description from the _common config. This function is blocking.
 
 ##### Synopsis
@@ -524,7 +540,8 @@ A string with the description
     //OUTPUT: Description for ExampleDP_Arg1
     console.log(dpGetDescription('ExampleDP_Arg1.'));
 
-#### dpGetUnit {#dpGetUnit}
+<a id="dpGetUnit"></a>
+#### dpGetUnit 
 Get the data point unit from the _common config. This function is blocking.
 
 ##### Synopsis
@@ -548,7 +565,8 @@ A string with the units
     //OUTPUT: °C
     console.log(dpGetUnit('ExampleDP_Arg1.'));
 
-#### dpGetFormat {#dpGetFormat}
+<a id="dpGetFormat"></a>
+#### dpGetFormat 
 Get the data point format from the _common config. This function is blocking.
 
 ##### Synopsis
@@ -572,7 +590,8 @@ A string with the format
     //OUTPUT: %15.3f
     console.log(dpGetFormat('ExampleDP_Arg1.'));
 
-#### dpNames {#dpNames}
+<a id="dpNames"></a> 
+#### dpNames
 Get a list of data point names that match a pattern
 
 ##### Synopsis
