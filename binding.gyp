@@ -47,7 +47,7 @@
                         "Debug": {
                             "msvs_settings": {
                                 "VCCLCompilerTool": {
-                                    "ForcedIncludeFiles": "dllspec.h",
+                                    "ForcedIncludeFiles": "<!(node -e \"console.log(process.cwd())\")/dllspec.h",
                                     "ExceptionHandling": "2"
                                 }
                             }
@@ -55,7 +55,7 @@
 						"Release": {
                             "msvs_settings": {
                                 "VCCLCompilerTool": {
-                                    "ForcedIncludeFiles": "dllspec.h",
+                                    "ForcedIncludeFiles": "<!(node -e \"console.log(process.cwd())\")/dllspec.h",
                                     "ExceptionHandling": "2"
                                 }
                             }
