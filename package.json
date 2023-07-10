@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "node-gyp": "^5.1.1"
+    "node-gyp": "^9.3.1"
   },
   "dependencies": {
     "nan": "^2.16.0",
